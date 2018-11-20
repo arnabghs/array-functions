@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { map } = require("./library.js");
+const { map,filter } = require("./library.js");
 
 //........ Test for map ..........//
 
@@ -31,6 +31,28 @@ testMap(["naruto","sasuke","sakura"],makeUpperCase,["NARUTO","SASUKE","SAKURA"])
 testMap(["a","A","1"],measureLength,[1,1,1]);
 testMap(["naruto","uzumaki","leaf"],measureLength,[6,7,4]);
 
+//........ Test for filter ........//
+
+const testFilter = function(inputArray,callbackFunction,expectedOutput){
+  assert.deepEqual(filter(inputArray,callbackFunction),expectedOutput);
+}
+
+const numberGreaterThan10 = function(input){
+  if (input > 10) return true;
+  return false;
+}
+
+const longWords = function(input){
+  if (input.length > 6) return true;
+  return false;
+}
+
+testFilter([],numberGreaterThan10,[]);
+testFilter([0],numberGreaterThan10,[]);
+testFilter([2,5,8,12,25,0,30,15],numberGreaterThan10,[12,25,30,15]);
+testFilter([],longWords,[]);
+testFilter(["ninja"],longWords,[]);
+testFilter(["kakashi","ninja","konoha","hashirama"],longWords,["kakashi","hashirama"]);
 
 console.log("\n............... All test are Fine ............\n");
 

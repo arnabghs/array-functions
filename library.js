@@ -5,4 +5,18 @@ const map = function (inputArray,callbackFunction){
   }
   return resultArray;
 }
-module.exports = {map }
+
+
+const filter = function(inputArray,callbackFunction){
+  let resultArray = [];
+  let indexCount = 0;
+  for (value of inputArray){
+    if (callbackFunction(value) == true){
+      resultArray[indexCount] = value;
+      indexCount++ ;
+    }
+  }
+  return resultArray;
+}
+
+module.exports = { map,filter }
