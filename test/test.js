@@ -1,25 +1,18 @@
 const assert = require('assert');
-const { map,filter } = require("./library.js");
+const { map,filter } = require("../library.js");
+const {
+  identity,
+  mulWith10,
+  makeUpperCase,
+  measureLength,
+  numberGreaterThan10,
+  longWords 
+} = require("../src/util.js");
 
 //........ Test for map ..........//
 
 const testMap = function(inputArray,callbackFunction,expectedOutput){
   assert.deepEqual(map(inputArray,callbackFunction),expectedOutput);
-}
-
-const identity = function(input){
-  return input;
-}
-
-const mulWith10 = function(input){
-  return input*10;
-}
-
-const makeUpperCase = function(input){
-  return input.toUpperCase();
-}
-const measureLength = function(input){
-  return input.length;
 }
 
 testMap([],identity,[]);
@@ -36,17 +29,6 @@ testMap(["naruto","uzumaki","leaf"],measureLength,[6,7,4]);
 const testFilter = function(inputArray,callbackFunction,expectedOutput){
   assert.deepEqual(filter(inputArray,callbackFunction),expectedOutput);
 }
-
-const numberGreaterThan10 = function(input){
-  if (input > 10) return true;
-  return false;
-}
-
-const longWords = function(input){
-  if (input.length > 6) return true;
-  return false;
-}
-
 testFilter([],numberGreaterThan10,[]);
 testFilter([0],numberGreaterThan10,[]);
 testFilter([2,5,8,12,25,0,30,15],numberGreaterThan10,[12,25,30,15]);
