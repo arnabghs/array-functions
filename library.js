@@ -21,8 +21,14 @@ const filter = function(inputArray,predicate){
 
 const reduce = function(inputArray,reducer,initialValue){
   let result = initialValue;
-  for (index in inputArray){
+  let index = 0;
+  if (initialValue == undefined){
+    result = inputArray[0];
+    index = 1;
+  }
+  while (index < inputArray.length){
     result = reducer(result,inputArray[index],index);
+    index++ ;
   }
   return result;
 }

@@ -54,24 +54,28 @@ describe ('Array Functions',function(){
     })
   })
   describe('reduce',function(){
-    it ('should give sum of a list of numbers',function(){
+    it('should return undefined for an empty array with no initial value',function(){
+      assert.deepEqual(reduce([],sum),undefined);
+      assert.deepEqual(reduce([],greatestNumber),undefined);
+    });
+    it ('should return the initial value for an empty array',function(){
       assert.deepEqual(reduce([],sum,0),0);
-      assert.deepEqual(reduce([1],sum,0),1);
-      assert.deepEqual(reduce([1,2,3,4],sum,0),10);
-      assert.deepEqual(reduce([-1,-2,0,1,2],sum,5),5);
-    })
-    it('should select the greatest value from a list of numbers',function(){
       assert.deepEqual(reduce([],greatestNumber,0),0);
-      assert.deepEqual(reduce([1],greatestNumber,0),1);
-      assert.deepEqual(reduce([1,2,3,4],greatestNumber,0),4);
-      assert.deepEqual(reduce([-2,-1,0],greatestNumber,0),0);
-    })
-    it('should filter every second element',function(){
       assert.deepEqual(reduce([],filter2ndElement,[]),[]);
-      assert.deepEqual(reduce([1],filter2ndElement,[]),[1]);
-      assert.deepEqual(reduce([2,3,4,5,6],filter2ndElement,[]),[2,4,6]);
+    })
+    it('for single element array and no initial value returns the value of element',function(){
+      assert.deepEqual(reduce([1],greatestNumber),1);
+      assert.deepEqual(reduce([1],sum),1);
+      assert.deepEqual(reduce([[1]],filter2ndElement),[1]);
+    })
+    it('for multi elements array returns a single value',function(){
+      assert.deepEqual(reduce([1,2,3,4],sum),10);
+      assert.deepEqual(reduce([-1,-2,0,1,2],sum,5),5);
+      assert.deepEqual(reduce([1,2,3,4],greatestNumber,0),4);
+      assert.deepEqual(reduce([-2,-1,0],greatestNumber),0);
+      assert.deepEqual(reduce([2,3,4,5,6],filter2ndElement),[2,4,6]);
       assert.deepEqual(reduce([1,2,-3,-4,5,0,6,7,0],filter2ndElement,[]),[1,-3,5,6,0]);
-      assert.deepEqual(reduce(['a','b','c','d'],filter2ndElement,[]),['a','c']);
+      assert.deepEqual(reduce(['a','b','c','d'],filter2ndElement),['a','c']);
     })
   })
 })

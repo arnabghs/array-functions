@@ -34,6 +34,10 @@ const greatestNumber = function(previousValue,currentValue){
 
 const filter2ndElement = function(previousValue,currentValue,index){
   let outputArray = previousValue;
+  if (typeof(previousValue) !== 'object') {
+    outputArray = new Array(1).fill(previousValue)
+  }
+
   if (index%2 == 0){
     outputArray.push(currentValue);
   }
