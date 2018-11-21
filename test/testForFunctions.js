@@ -14,20 +14,24 @@ const {
 
 describe ('Array Functions',function(){
   describe('map',function(){
-    it('should work for identity function',function(){
+    it('with empty array it should return empty array',function(){
       assert.deepEqual(map([],identity),[]);
-      assert.deepEqual(map([0,1,2,3],identity),[0,1,2,3]);
-      assert.deepEqual(map(["Japan","Germany","Madagascar"],identity),["Japan","Germany","Madagascar"]);
-    });
-    it('arithmatic operations on numbers',function(){
       assert.deepEqual(map([],mulWith10),[]);
-      assert.deepEqual(map([0,1,2,3],mulWith10),[0,10,20,30]);
+    });
+    it('with single element array it should return a array of single element',function(){
+      assert.deepEqual(map([1],identity),[1]);
+      assert.deepEqual(map(["A"],measureLength),[1]);
     })
-    it('should work on strings',function(){
+    it('with multi-elements array it should preserve the length of the array',function(){
+      assert.deepEqual(map(["Japan","Germany","Madagascar"],identity),["Japan","Germany","Madagascar"]);
+      assert.deepEqual(map([0,1,2,3],mulWith10),[0,10,20,30]);
       assert.deepEqual(map(["naruto","sasuke","sakura"],makeUpperCase),["NARUTO","SASUKE","SAKURA"]);
-      assert.deepEqual(map(["a","A","1"],measureLength),[1,1,1]);
       assert.deepEqual(map(["naruto","uzumaki","leaf"],measureLength),[6,7,4]);
     });
+    it('with array of all empty elements it should return an identical array',function(){
+      assert.deepEqual(map([,,,,],mulWith10),[,,,,]); 
+      assert.deepEqual(map([,,,,],measureLength),[,,,,]); 
+    })
   });
   describe('filter',function(){
     it ('should filter numbers',function(){
