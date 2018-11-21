@@ -1,12 +1,15 @@
 const assert = require('assert');
-const { map,filter } = require("../library.js");
+const { map,filter,reduce } = require("../library.js");
 const {
   identity,
   mulWith10,
   makeUpperCase,
   measureLength,
   numberGreaterThan10,
-  longWords 
+  longWords,
+  sum,
+  greatestNumber,
+  filter2ndElement
 } = require("../src/util.js");
 
 describe ('Array Functions',function(){
@@ -36,6 +39,27 @@ describe ('Array Functions',function(){
       assert.deepEqual(filter([],longWords),[]);
       assert.deepEqual(filter(["ninja"],longWords),[]);
       assert.deepEqual(filter(["kakashi","ninja","konoha","hashirama"],longWords),["kakashi","hashirama"]);
+    })
+  })
+  describe('reduce',function(){
+    it ('should give sum of a list of numbers',function(){
+      assert.deepEqual(reduce([],sum,0),0);
+      assert.deepEqual(reduce([1],sum,0),1);
+      assert.deepEqual(reduce([1,2,3,4],sum,0),10);
+      assert.deepEqual(reduce([-1,-2,0,1,2],sum,5),5);
+    })
+    it('should select the greatest value from a list of numbers',function(){
+      assert.deepEqual(reduce([],greatestNumber,0),0);
+      assert.deepEqual(reduce([1],greatestNumber,0),1);
+      assert.deepEqual(reduce([1,2,3,4],greatestNumber,0),4);
+      assert.deepEqual(reduce([-2,-1,0],greatestNumber,0),0);
+    })
+    it('should filter every second element',function(){
+      assert.deepEqual(reduce([],filter2ndElement,[]),[]);
+      assert.deepEqual(reduce([1],filter2ndElement,[]),[1]);
+      assert.deepEqual(reduce([2,3,4,5,6],filter2ndElement,[]),[2,4,6]);
+      assert.deepEqual(reduce([1,2,-3,-4,5,0,6,7,0],filter2ndElement,[]),[1,-3,5,6,0]);
+      assert.deepEqual(reduce(['a','b','c','d'],filter2ndElement,[]),['a','c']);
     })
   })
 })

@@ -19,4 +19,12 @@ const filter = function(inputArray,callbackFunction){
   return resultArray;
 }
 
-module.exports = { map,filter }
+const reduce = function(inputArray,callbackFunction,initialValue){
+  let result = initialValue;
+  for (index in inputArray){
+    result = callbackFunction(result,inputArray[index],index);
+  }
+  return result;
+}
+
+module.exports = { map,filter,reduce }

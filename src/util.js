@@ -24,11 +24,30 @@ const longWords = function(input){
   return false;
 }
 
+const sum = function(accumulator,currentValue){
+  return accumulator + currentValue;
+}
+
+const greatestNumber = function(previousValue,currentValue){
+  return Math.max(previousValue,currentValue);
+}
+
+const filter2ndElement = function(previousValue,currentValue,index){
+  let outputArray = previousValue;
+  if (index%2 == 0){
+    outputArray.push(currentValue);
+  }
+  return outputArray;
+} 
+
 module.exports = {
   identity,
   mulWith10,
   makeUpperCase,
   measureLength,
   numberGreaterThan10,
-  longWords
+  longWords,
+  sum,
+  greatestNumber,
+  filter2ndElement
 }
