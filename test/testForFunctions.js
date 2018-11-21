@@ -34,15 +34,23 @@ describe ('Array Functions',function(){
     })
   });
   describe('filter',function(){
-    it ('should filter numbers',function(){
+    it ('with empty array should return empty array',function(){
       assert.deepEqual(filter([],numberGreaterThan10),[]);
-      assert.deepEqual(filter([0],numberGreaterThan10),[]);
-      assert.deepEqual(filter([2,5,8,12,25,0,30,15],numberGreaterThan10),[12,25,30,15]);
-    })
-    it ('should filter strings',function(){
       assert.deepEqual(filter([],longWords),[]);
+    })
+    it ('with all truthy values returns an identical array',function(){
+      assert.deepEqual(filter([1,2,3],(x)=> true),[1,2,3]);
+      assert.deepEqual(filter(['a','b','c'],(x)=> true),['a','b','c']);
+    })
+    it ('with all falsy values returns an empty array',function(){
+      assert.deepEqual(filter([1,2,3],(x)=> false),[]);
+      assert.deepEqual(filter(['a','b','c'],(x)=> false),[]);
+    })
+    it ('with both truthy and falsy values should return an array of lesser length than input array',function(){
       assert.deepEqual(filter(["ninja"],longWords),[]);
       assert.deepEqual(filter(["kakashi","ninja","konoha","hashirama"],longWords),["kakashi","hashirama"]);
+      assert.deepEqual(filter([0],numberGreaterThan10),[]);
+      assert.deepEqual(filter([2,5,8,12,25,0,30,15],numberGreaterThan10),[12,25,30,15]);
     })
   })
   describe('reduce',function(){
