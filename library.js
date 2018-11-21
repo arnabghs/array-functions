@@ -1,17 +1,17 @@
-const map = function (inputArray,callbackFunction){
+const map = function (inputArray,mapper){
   let resultArray = [];
   for (index in inputArray){
-    resultArray[index] = callbackFunction(inputArray[index]);
+    resultArray[index] = mapper(inputArray[index]);
   }
   return resultArray;
 }
 
 
-const filter = function(inputArray,callbackFunction){
+const filter = function(inputArray,predicate){
   let resultArray = [];
   let indexCount = 0;
   for (value of inputArray){
-    if (callbackFunction(value) == true){
+    if (predicate(value) == true){
       resultArray[indexCount] = value;
       indexCount++ ;
     }
@@ -19,10 +19,10 @@ const filter = function(inputArray,callbackFunction){
   return resultArray;
 }
 
-const reduce = function(inputArray,callbackFunction,initialValue){
+const reduce = function(inputArray,reducer,initialValue){
   let result = initialValue;
   for (index in inputArray){
-    result = callbackFunction(result,inputArray[index],index);
+    result = reducer(result,inputArray[index],index);
   }
   return result;
 }
