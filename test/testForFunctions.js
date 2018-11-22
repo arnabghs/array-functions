@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { map,filter,reduce } = require("../library.js");
+const { map,filter,reduce,mapPrime } = require("../library.js");
 const {
   identity,
   mulWith10,
@@ -78,5 +78,25 @@ describe ('Array Functions',function(){
       assert.deepEqual(reduce(['a','b','c','d'],filter2ndElement),['a','c']);
     })
   })
+  describe('mapPrime',function(){
+    it('with empty array it should return empty array',function(){
+      assert.deepEqual(mapPrime([],identity),[]);
+      assert.deepEqual(mapPrime([],mulWith10),[]);
+    });
+    it('with single element array it should return a array of single element',function(){
+      assert.deepEqual(mapPrime([1],identity),[1]);
+      assert.deepEqual(mapPrime(["A"],measureLength),[1]);
+    })
+    it('with multi-elements array it should preserve the length of the array',function(){
+      assert.deepEqual(mapPrime(["Japan","Germany","Madagascar"],identity),["Japan","Germany","Madagascar"]);
+      assert.deepEqual(mapPrime([0,1,2,3],mulWith10),[0,10,20,30]);
+      assert.deepEqual(mapPrime(["naruto","sasuke","sakura"],makeUpperCase),["NARUTO","SASUKE","SAKURA"]);
+      assert.deepEqual(mapPrime(["naruto","uzumaki","leaf"],measureLength),[6,7,4]);
+    });
+    it('with array of all empty elements it should return an identical array',function(){
+      assert.deepEqual(mapPrime([,,,,],mulWith10),[,,,,]); 
+      assert.deepEqual(mapPrime([,,,,],measureLength),[,,,,]); 
+    })
+  });
 })
 

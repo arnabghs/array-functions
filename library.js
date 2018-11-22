@@ -32,4 +32,8 @@ const reduce = function(inputArray,reducer,initialValue){
   return result;
 }
 
-module.exports = { map,filter,reduce }
+const mapPrime = function(inputArray,mapper){
+  return reduce(inputArray,(x,y) => x.concat(mapper(y)),[]);
+}
+
+module.exports = { map,filter,reduce,mapPrime }
