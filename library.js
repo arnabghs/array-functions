@@ -18,14 +18,15 @@ const filter = function(inputArray,predicate){
 }
 
 const reduce = function(inputArray,reducer,initialValue){
+  let source = filter(inputArray,(x) => x == x); // for array with empty elements
   let result = initialValue;
   let index = 0;
   if (initialValue == undefined){
-    result = inputArray[0];
+    result = source[0];
     index = 1;
   }
-  while (index < inputArray.length){
-    result = reducer(result,inputArray[index],index);
+  while (index < source.length){
+    result = reducer(result,source[index],index);
     index++ ;
   }
   return result;
