@@ -9,11 +9,9 @@ const map = function (inputArray,mapper){
 
 const filter = function(inputArray,predicate){
   let resultArray = [];
-  let indexCount = 0;
-  for (value of inputArray){
-    if (predicate(value) == true){
-      resultArray[indexCount] = value;
-      indexCount++ ;
+  for (index in inputArray){
+    if (predicate(inputArray[index]) == true){
+      resultArray.push(inputArray[index]);
     }
   }
   return resultArray;
