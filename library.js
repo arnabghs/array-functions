@@ -6,7 +6,6 @@ const map = function (inputArray,mapper){
   return resultArray;
 }
 
-
 const filter = function(inputArray,predicate){
   let resultArray = [];
   for (index in inputArray){
@@ -36,4 +35,11 @@ const mapPrime = function(inputArray,mapper){
   return reduce(inputArray,(x,y) => x.concat(mapper(y)),[]);
 }
 
-module.exports = { map,filter,reduce,mapPrime }
+const filterPrime = function(inputArray,predicate){
+  return reduce(inputArray,(x,y) => {
+    if(predicate(y)) x.push(y);
+    return x;
+  },[]);
+}
+
+module.exports = { map,filter,reduce,mapPrime,filterPrime }

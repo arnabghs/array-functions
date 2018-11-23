@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { map,filter,reduce,mapPrime } = require("../library.js");
+const { map,filter,reduce,mapPrime,filterPrime } = require("../library.js");
 const {
   identity,
   mulWith10,
@@ -98,5 +98,26 @@ describe ('Array Functions',function(){
       assert.deepEqual(mapPrime([,,,,],measureLength),[,,,,]); 
     })
   });
+  describe('filterPrime',function(){
+    it ('with empty array should return empty array',function(){
+      assert.deepEqual(filterPrime([],numberGreaterThan10),[]);
+      assert.deepEqual(filterPrime([],longWords),[]);
+    })
+    it ('with all truthy values returns an identical array',function(){
+      assert.deepEqual(filterPrime([1,2,3],(x)=> true),[1,2,3]);
+      assert.deepEqual(filterPrime(['a','b','c'],(x)=> true),['a','b','c']);
+    })
+    it ('with all falsy values returns an empty array',function(){
+      assert.deepEqual(filterPrime([1,2,3],(x)=> false),[]);
+      assert.deepEqual(filterPrime(['a','b','c'],(x)=> false),[]);
+    })
+    it ('with both truthy and falsy values should return an array of lesser length than input array',function(){
+      assert.deepEqual(filterPrime(["ninja"],longWords),[]);
+      assert.deepEqual(filterPrime(["kakashi","ninja","konoha","hashirama"],longWords),["kakashi","hashirama"]);
+      assert.deepEqual(filterPrime([0],numberGreaterThan10),[]);
+      assert.deepEqual(filterPrime([2,5,8,12,25,0,30,15],numberGreaterThan10),[12,25,30,15]);
+    })
+  })
+
 })
 
