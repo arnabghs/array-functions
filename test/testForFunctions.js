@@ -120,22 +120,22 @@ describe ('Array Functions',function(){
   })
 describe('reducePrime',function(){
     it('should return undefined for an empty array with no initial value',function(){
-      assert.deepEqual(reducePrime([],sum),undefined);
-      assert.deepEqual(reducePrime([],greatestNumber),undefined);
+      assert.deepEqual(reducePrime(sum,[]),undefined);
+      assert.deepEqual(reducePrime(greatestNumber,[]),undefined);
     });
     it ('should return the initial value for an empty array',function(){
-      assert.deepEqual(reducePrime([],sum,0),0);
-      assert.deepEqual(reducePrime([],greatestNumber,0),0);
+      assert.deepEqual(reducePrime(sum,[],0),0);
+      assert.deepEqual(reducePrime(greatestNumber,[],0),0);
     })
     it('for single element array and no initial value returns the value of element',function(){
-      assert.deepEqual(reducePrime([1],greatestNumber),1);
-      assert.deepEqual(reducePrime([1],sum),1);
+      assert.deepEqual(reducePrime(greatestNumber,[1]),1);
+      assert.deepEqual(reducePrime(sum,[1]),1);
     })
     it('for multi elements array returns a single value',function(){
-      assert.deepEqual(reducePrime([1,2,3,4],sum),10);
-      assert.deepEqual(reducePrime([-1,-2,0,1,2],sum,5),5);
-      assert.deepEqual(reducePrime([1,2,3,4],greatestNumber,0),4);
-      assert.deepEqual(reducePrime([-2,-1,0],greatestNumber),0);
+      assert.deepEqual(reducePrime(sum,[1,2,3,4]),10);
+      assert.deepEqual(reducePrime(sum,[-1,-2,0,1,2],5),5);
+      assert.deepEqual(reducePrime(greatestNumber,[1,2,3,4],0),4);
+      assert.deepEqual(reducePrime(greatestNumber,[-2,-1,0]),0);
     })
   })
 })

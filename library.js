@@ -41,7 +41,7 @@ const filterPrime = function(predicate,inputArray){
     return x;
   },inputArray,[]);
 }
-const reducePrime = function(inputArray,reducer,initialValue){
+const reducePrime = function(reducer,inputArray,initialValue){
   let source = filter((x) => x == x,inputArray); // for array with empty elements
   let result = initialValue;
   if (initialValue == undefined){
@@ -53,7 +53,7 @@ const reducePrime = function(inputArray,reducer,initialValue){
   }
   result = reducer(result,source[0]);
   source.shift();
-  return reducePrime(source,reducer,result);
+  return reducePrime(reducer,source,result);
 }
 
 
