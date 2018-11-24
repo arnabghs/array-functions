@@ -41,5 +41,20 @@ const filterPrime = function(inputArray,predicate){
     return x;
   },[]);
 }
+const reducePrime = function(inputArray,reducer,initialValue){
+  let source = filter(inputArray,(x) => x == x); // for array with empty elements
+  let result = initialValue;
+  if (initialValue == undefined){
+    result = source[0];
+    source.shift();
+  }
+  if (source.length == 0){
+    return result;
+  }
+  result = reducer(result,source[0]);
+  source.shift();
+  return reducePrime(source,reducer,result);
+}
 
-module.exports = { map,filter,reduce,mapPrime,filterPrime }
+
+module.exports = { map,filter,reduce,mapPrime,filterPrime,reducePrime }

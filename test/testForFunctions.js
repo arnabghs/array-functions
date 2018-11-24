@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { map,filter,reduce,mapPrime,filterPrime } = require("../library.js");
+const { map,filter,reduce,mapPrime,filterPrime,reducePrime } = require("../library.js");
 const {
   identity,
   mulWith10,
@@ -118,6 +118,25 @@ describe ('Array Functions',function(){
       assert.deepEqual(filterPrime([2,5,8,12,25,0,30,15],numberGreaterThan10),[12,25,30,15]);
     })
   })
-
+describe('reducePrime',function(){
+    it('should return undefined for an empty array with no initial value',function(){
+      assert.deepEqual(reducePrime([],sum),undefined);
+      assert.deepEqual(reducePrime([],greatestNumber),undefined);
+    });
+    it ('should return the initial value for an empty array',function(){
+      assert.deepEqual(reducePrime([],sum,0),0);
+      assert.deepEqual(reducePrime([],greatestNumber,0),0);
+    })
+    it('for single element array and no initial value returns the value of element',function(){
+      assert.deepEqual(reducePrime([1],greatestNumber),1);
+      assert.deepEqual(reducePrime([1],sum),1);
+    })
+    it('for multi elements array returns a single value',function(){
+      assert.deepEqual(reducePrime([1,2,3,4],sum),10);
+      assert.deepEqual(reducePrime([-1,-2,0,1,2],sum,5),5);
+      assert.deepEqual(reducePrime([1,2,3,4],greatestNumber,0),4);
+      assert.deepEqual(reducePrime([-2,-1,0],greatestNumber),0);
+    })
+  })
 })
 
