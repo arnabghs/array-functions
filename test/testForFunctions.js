@@ -15,22 +15,22 @@ const {
 describe ('Array Functions',function(){
   describe('map',function(){
     it('with empty array it should return empty array',function(){
-      assert.deepEqual(map([],identity),[]);
-      assert.deepEqual(map([],mulWith10),[]);
+      assert.deepEqual(map(identity,[]),[]);
+      assert.deepEqual(map(mulWith10,[]),[]);
     });
     it('with single element array it should return a array of single element',function(){
-      assert.deepEqual(map([1],identity),[1]);
-      assert.deepEqual(map(["A"],measureLength),[1]);
+      assert.deepEqual(map(identity,[1]),[1]);
+      assert.deepEqual(map(measureLength,["A"]),[1]);
     })
     it('with multi-elements array it should preserve the length of the array',function(){
-      assert.deepEqual(map(["Japan","Germany","Madagascar"],identity),["Japan","Germany","Madagascar"]);
-      assert.deepEqual(map([0,1,2,3],mulWith10),[0,10,20,30]);
-      assert.deepEqual(map(["naruto","sasuke","sakura"],makeUpperCase),["NARUTO","SASUKE","SAKURA"]);
-      assert.deepEqual(map(["naruto","uzumaki","leaf"],measureLength),[6,7,4]);
+      assert.deepEqual(map(identity,["Japan","Germany","Madagascar"]),["Japan","Germany","Madagascar"]);
+      assert.deepEqual(map(mulWith10,[0,1,2,3]),[0,10,20,30]);
+      assert.deepEqual(map(makeUpperCase,["naruto","sasuke","sakura"]),["NARUTO","SASUKE","SAKURA"]);
+      assert.deepEqual(map(measureLength,["naruto","uzumaki","leaf"]),[6,7,4]);
     });
     it('with array of all empty elements it should return an identical array',function(){
-      assert.deepEqual(map([,,,,],mulWith10),[,,,,]); 
-      assert.deepEqual(map([,,,,],measureLength),[,,,,]); 
+      assert.deepEqual(map(mulWith10,[,,,,]),[,,,,]); 
+      assert.deepEqual(map(measureLength,[,,,,]),[,,,,]); 
     })
   });
   describe('filter',function(){

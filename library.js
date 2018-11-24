@@ -1,4 +1,4 @@
-const map = function (inputArray,mapper){
+const map = function (mapper,inputArray){
   let resultArray = [];
   for (index in inputArray){
     resultArray[index] = mapper(inputArray[index]);
