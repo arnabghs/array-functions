@@ -35,7 +35,7 @@ const mapPrime = function(mapper,inputArray){
   return reduce((x,y) => x.concat(mapper(y)),inputArray,[]);
 }
 
-const filterPrime = function(inputArray,predicate){
+const filterPrime = function(predicate,inputArray){
   return reduce((x,y) => {
     if(predicate(y)) x.push(y);
     return x;

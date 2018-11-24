@@ -100,22 +100,22 @@ describe ('Array Functions',function(){
   });
   describe('filterPrime',function(){
     it ('with empty array should return empty array',function(){
-      assert.deepEqual(filterPrime([],numberGreaterThan10),[]);
-      assert.deepEqual(filterPrime([],longWords),[]);
+      assert.deepEqual(filterPrime(numberGreaterThan10,[]),[]);
+      assert.deepEqual(filterPrime(longWords,[]),[]);
     })
     it ('with all truthy values returns an identical array',function(){
-      assert.deepEqual(filterPrime([1,2,3],(x)=> true),[1,2,3]);
-      assert.deepEqual(filterPrime(['a','b','c'],(x)=> true),['a','b','c']);
+      assert.deepEqual(filterPrime((x)=> true,[1,2,3]),[1,2,3]);
+      assert.deepEqual(filterPrime((x)=> true,['a','b','c']),['a','b','c']);
     })
     it ('with all falsy values returns an empty array',function(){
-      assert.deepEqual(filterPrime([1,2,3],(x)=> false),[]);
-      assert.deepEqual(filterPrime(['a','b','c'],(x)=> false),[]);
+      assert.deepEqual(filterPrime((x)=> false[1,2,3]),[]);
+      assert.deepEqual(filterPrime((x)=> false,['a','b','c']),[]);
     })
     it ('with both truthy and falsy values should return an array of lesser length than input array',function(){
-      assert.deepEqual(filterPrime(["ninja"],longWords),[]);
-      assert.deepEqual(filterPrime(["kakashi","ninja","konoha","hashirama"],longWords),["kakashi","hashirama"]);
-      assert.deepEqual(filterPrime([0],numberGreaterThan10),[]);
-      assert.deepEqual(filterPrime([2,5,8,12,25,0,30,15],numberGreaterThan10),[12,25,30,15]);
+      assert.deepEqual(filterPrime(longWords,["ninja"]),[]);
+      assert.deepEqual(filterPrime(longWords,["kakashi","ninja","konoha","hashirama"]),["kakashi","hashirama"]);
+      assert.deepEqual(filterPrime(numberGreaterThan10,[0]),[]);
+      assert.deepEqual(filterPrime(numberGreaterThan10,[2,5,8,12,25,0,30,15]),[12,25,30,15]);
     })
   })
 describe('reducePrime',function(){
