@@ -31,7 +31,7 @@ const reduce = function(reducer,inputArray,initialValue){
   return result;
 }
 
-const mapPrime = function(inputArray,mapper){
+const mapPrime = function(mapper,inputArray){
   return reduce((x,y) => x.concat(mapper(y)),inputArray,[]);
 }
 
