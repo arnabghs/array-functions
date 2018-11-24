@@ -16,7 +16,7 @@ const filter = function(predicate,inputArray){
   return resultArray;
 }
 
-const reduce = function(inputArray,reducer,initialValue){
+const reduce = function(reducer,inputArray,initialValue){
   let source = filter((x) => x == x,inputArray); // for array with empty elements
   let result = initialValue;
   let index = 0;
@@ -32,14 +32,14 @@ const reduce = function(inputArray,reducer,initialValue){
 }
 
 const mapPrime = function(inputArray,mapper){
-  return reduce(inputArray,(x,y) => x.concat(mapper(y)),[]);
+  return reduce((x,y) => x.concat(mapper(y)),inputArray,[]);
 }
 
 const filterPrime = function(inputArray,predicate){
-  return reduce(inputArray,(x,y) => {
+  return reduce((x,y) => {
     if(predicate(y)) x.push(y);
     return x;
-  },[]);
+  },inputArray,[]);
 }
 const reducePrime = function(inputArray,reducer,initialValue){
   let source = filter((x) => x == x,inputArray); // for array with empty elements
