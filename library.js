@@ -6,7 +6,7 @@ const map = function (mapper,inputArray){
   return resultArray;
 }
 
-const filter = function(inputArray,predicate){
+const filter = function(predicate,inputArray){
   let resultArray = [];
   for (index in inputArray){
     if (predicate(inputArray[index]) == true){
@@ -17,7 +17,7 @@ const filter = function(inputArray,predicate){
 }
 
 const reduce = function(inputArray,reducer,initialValue){
-  let source = filter(inputArray,(x) => x == x); // for array with empty elements
+  let source = filter((x) => x == x,inputArray); // for array with empty elements
   let result = initialValue;
   let index = 0;
   if (initialValue == undefined){
@@ -42,7 +42,7 @@ const filterPrime = function(inputArray,predicate){
   },[]);
 }
 const reducePrime = function(inputArray,reducer,initialValue){
-  let source = filter(inputArray,(x) => x == x); // for array with empty elements
+  let source = filter((x) => x == x,inputArray); // for array with empty elements
   let result = initialValue;
   if (initialValue == undefined){
     result = source[0];
